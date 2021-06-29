@@ -1,0 +1,80 @@
+<div class="wrapper">
+  <!-- <button (click)="home()">Details</button>
+  <app-home *ngIf="ishome" routerLink="/home"  ></app-home> -->
+  <div class="form-wrapper">
+    <h2>My Form</h2>
+    <form [formGroup]="userForm">
+      <div class="example-container">
+        <mat-form-field appearance="fill">
+          <mat-label>FirstName</mat-label>
+          <input matInput formControlName="firstName" required>
+          <mat-error>{{getErrorMessagefirstName()}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="example-container">
+        <mat-form-field appearance="fill">
+          <mat-label>LastName</mat-label>
+          <input matInput formControlName="lastName" required>
+          <mat-error>{{getErrorMessageLastName()}}</mat-error>
+        </mat-form-field>
+      </div>
+      <mat-form-field appearance="fill">
+        <mat-label>BornDate</mat-label>
+        <input type="date" matInput formControlName="bornDate">
+        <mat-datepicker #myDate></mat-datepicker>
+      </mat-form-field>
+      <div class="example-container">
+        <mat-form-field appearance="fill">
+          <mat-label>Tz</mat-label>
+          <input matInput formControlName="id" required>
+          <mat-error>{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+      <mat-form-field appearance="fill">
+        <mat-label>Gender</mat-label>
+        <mat-select formControlName="gender">
+          <mat-option value="male">male</mat-option>
+          <mat-option value="female">female</mat-option>
+        </mat-select>
+        
+        <mat-hint class="error">"This is a required field"</mat-hint>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>HMO</mat-label>
+        <mat-select formControlName="hMO">
+          <mat-option *ngFor="let hmo of hmos" [value]="hmo.value">
+            {{hmo.viewValue}}
+          </mat-option>
+        </mat-select>
+        <mat-hint class="error">"This is a required field"</mat-hint>
+      </mat-form-field>
+      <button (click)=addChild()>addChild</button>
+      <div *ngIf="children" formArrayName="children" class="child">
+
+        <div  *ngFor="let child of children.controls; let i = index" [formGroupName]="i">
+          <mat-form-field appearance="outline">
+            <mat-label>Tz</mat-label>
+            <input formControlName="id" matInput placeholder="Placeholder" required>
+            <mat-hint class="error">"This is a required field"</mat-hint>
+          </mat-form-field>
+
+
+          <mat-form-field appearance="outline">
+            <mat-label> firstName</mat-label>
+            <input formControlName="firstName" matInput placeholder="Placeholder" required>
+            <mat-hint class="error">"This is a required field"</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>BornDate</mat-label>
+            <input formControlName="BornDate" type="date" matInput>
+            <mat-datepicker #myDate></mat-datepicker>
+            <mat-hint class="error">"This is a required field"</mat-hint>
+          </mat-form-field>
+
+        </div>
+      </div>
+      <button (click)=onSubmit() [ngClass]="{'sumbit':userForm.invalid}" [disabled]="userForm.invalid">sumbit</button>
+    </form>
+  </div>
+</div>
