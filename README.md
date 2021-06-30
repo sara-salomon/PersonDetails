@@ -27,6 +27,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 ## attach Screenshots
 ![מסך לשליחה עם ילדים שנוספו באופן דינמי](https://user-images.githubusercontent.com/83713091/123911101-03f17b80-d984-11eb-879f-9d72dc629a46.jpg)
-![מסך לשליחה עם ילדים שנוספו באופן דינמי](https://user-images.githubusercontent.com/83713091/123911190-208db380-d984-11eb-981c-86c5b4da595e.jpg)
 ![מסך פתיחה כפתור שליחה לא מאופשר](https://user-images.githubusercontent.com/83713091/123911194-22577700-d984-11eb-982f-5fcee6d35707.jpg)
+![דף הנחיות על מילוי הפרטים](https://user-images.githubusercontent.com/83713091/123912680-048b1180-d986-11eb-9fb7-ed99d7d3a0af.jpg)
+![הנתונים נשמרו בהצלחה](https://user-images.githubusercontent.com/83713091/123912799-284e5780-d986-11eb-8f85-e3d0d6a9bdda.jpg)
 
