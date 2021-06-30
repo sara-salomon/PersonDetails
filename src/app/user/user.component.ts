@@ -25,14 +25,20 @@ export class UserComponent implements OnInit {
   serializedDate = new FormControl((new Date()).toISOString());
   IsAdd: boolean = false;
   public parent: any;
+  childrenForm: any;
+  childrenFormParent: any;
+
   constructor(private formBuilder: FormBuilder, private userFunction: UserFunctionService) { }
   ngOnInit(): void {
     this.builderformBuilder();
-    this.parent = this.userForm.parent;
+    this.userForm.controls['firstName'].setValue(this.userFunction.currentUserFirstName);
+    this.userForm.controls['lastName'].setValue(this.userFunction.currentUserLastName);
+    this.userForm.controls['bornDate'].setValue(this.userFunction.currentUserbornDate);
+    this.userForm.controls['id'].setValue(this.userFunction.currentUserid);
+    this.userForm.controls['gender'].setValue(this.userFunction.currentUsergender);
+    this.userForm.controls['hMO'].setValue(this.userFunction.currentUserhMO);
   }
-
   OnDestroy(): void {
-    debugger
     this.newUser = this.userForm.getRawValue();
   }
   builderformBuilder() {
@@ -44,7 +50,6 @@ export class UserComponent implements OnInit {
       gender: ['', [Validators.required]],
       hMO: ['', [Validators.required]],
       children: this.formBuilder.array([
-        // this.formBuilder.group(new Child()),
       ])
     });
   }
@@ -54,9 +59,7 @@ export class UserComponent implements OnInit {
     return this.userForm.get('children') as FormArray;
   }
   addChild() {
-    debugger
     let child = new Child();
-
     let fg = this.formBuilder.group(child);
     this.children.push(fg);
   }
@@ -82,9 +85,8 @@ export class UserComponent implements OnInit {
   }
 
   onSubmit() {
-    alert("from form");
     this.newUser = this.userForm.getRawValue();
-    this.userFunction.addUser(this.newUser).subscribe(() => { alert("save user") });
+    this.userFunction.addUser(this.newUser).subscribe(() => { });
   }
 
   getErrorMessageTz(i: number) {
@@ -93,12 +95,13 @@ export class UserComponent implements OnInit {
     }
     return this.userForm.get('children').hasError('pattern') ? 'Not a valid tz' : '';
   }
-
-  // home() {
-  //   if (this.ishome == false)
-  //     this.ishome = true;
-  //   else
-  //     this.ishome = false;
-  // }
-
+  changeName() {
+    this.userFunction.currentUser = `${this.userForm.get('firstName').value} ${this.userForm.get('lastName').value}`;
+    this.userFunction.currentUserFirstName = this.userForm.get('firstName').value;
+    this.userFunction.currentUserLastName = this.userForm.get('lastName').value;
+    this.userFunction.currentUserbornDate = this.userForm.get('bornDate').value;
+    this.userFunction.currentUserid = this.userForm.get('id').value;
+    this.userFunction.currentUsergender = this.userForm.get('gender').value;
+    this.userFunction.currentUserhMO = this.userForm.get('hMO').value;
+  }
 }
